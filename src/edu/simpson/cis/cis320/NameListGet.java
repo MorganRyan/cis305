@@ -15,15 +15,12 @@ import com.google.gson.Gson;
  */
 @WebServlet(name = "NameListGet")
 public class NameListGet extends javax.servlet.http.HttpServlet {
-    protected void doPost(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        out.print("{ \"Field\":\"Hello World\"}");
-        //Gson gson = new Gson();
-        //String json = gson.toJson(myObject);
-    }
-
-    protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-
+        List <Person> peopleList = PersonDAO.getPeople();
+        Gson gson = new Gson();
+        String json = gson.toJson(peopleList);
+        out.println(json);
     }
 }
