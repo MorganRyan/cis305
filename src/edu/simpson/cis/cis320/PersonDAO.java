@@ -17,6 +17,11 @@ import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 public class PersonDAO {
     private final static Logger log = Logger.getLogger(edu.simpson.cis.cis320.PersonDAO.class.getName());
 
+    public static List<Person>getPeople() {
+        //Person person = new Person();
+        log.log(Level.FINE, "getPeople");
+        List<Person>list = new LinkedList<Person>();
+
     public static void updatePerson(Person person) {
         //Person person = new Person();
         log.log(Level.FINE, "Update People");
