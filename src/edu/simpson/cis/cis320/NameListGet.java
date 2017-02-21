@@ -18,9 +18,9 @@ public class NameListGet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("application/json");
         PrintWriter out = response.getWriter();
-        List <Person> peopleList = PersonDAO.getPeople();
+        void updatePerson(Person person);
         Gson gson = new Gson();
-        String json = gson.toJson(peopleList);
+        String json = gson.toJson(updatePerson);
         out.println(json);
     }
 }

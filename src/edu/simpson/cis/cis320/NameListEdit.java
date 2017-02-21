@@ -1,6 +1,6 @@
 package edu.simpson.cis.cis320;
 
-import edu.simpson.cis.cis320.PersonNewDAO;
+import edu.simpson.cis.cis320.PersonDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,8 +44,12 @@ public class NameListEdit extends HttpServlet {
         out.println("birthday='"+birthday+"'");
 
         Person person = new Person();
-        person.setfirst(firstname);
-        PersonNewDAO.
+        person.setFirst(firstname);
+        person.setLast(lastname);
+        person.setEmail(email);
+        person.setPhone(phone);
+        person.setBirthday(birthday);
+        PersonDAO.updatePerson(person);
 
     }
 }
