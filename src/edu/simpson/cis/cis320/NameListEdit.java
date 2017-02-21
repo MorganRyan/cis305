@@ -30,22 +30,22 @@ public class NameListEdit extends HttpServlet {
         out.println("Post");
 
         // Grab the data we got via a parameter
-        String firstname = request.getParameter("firstname");
-        String lastname = request.getParameter("lastname");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
         String phone = request.getParameter("phone");
         String birthday = request.getParameter("birthday");
 
         // Just print the data out to confirm we got it.
-        out.println("firstname='"+firstname+"'");
-        out.println("lastname='"+lastname+"'");
+        out.println("firstName='"+firstName+"'");
+        out.println("lastName='"+lastName+"'");
         out.println("email='"+email+"'");
         out.println("phone='"+phone+"'");
         out.println("birthday='"+birthday+"'");
 
         Person person = new Person();
-        person.setFirst(firstname);
-        person.setLast(lastname);
+        person.setFirst(firstName);
+        person.setLast(lastName);
         person.setEmail(email);
         person.setPhone(phone);
         person.setBirthday(birthday);
