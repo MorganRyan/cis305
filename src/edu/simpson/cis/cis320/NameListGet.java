@@ -17,7 +17,7 @@ import com.google.gson.Gson;
 public class NameListGet extends javax.servlet.http.HttpServlet {
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
+        PrintWriter out = response.getWriter(); {
         public void updatePerson(Person person);
         Gson gson = new Gson();
         String json = gson.toJson(updatePerson);
