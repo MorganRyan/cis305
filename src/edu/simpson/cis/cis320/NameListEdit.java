@@ -49,7 +49,7 @@ public class NameListEdit extends HttpServlet {
         person.setEmail(email);
         person.setPhone(phone);
         person.setBirthday(birthday);
-        //PersonDAO.updatePerson(person);
+        PersonDAO.updatePerson(person);
 
     }
 }
