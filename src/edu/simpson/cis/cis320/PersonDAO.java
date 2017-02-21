@@ -19,15 +19,16 @@ public class PersonDAO {
 
     public static List<Person>getPeople() {
         //Person person = new Person();
-        log.log(Level.FINE, "getPeople");
+        log.log(Level.FINE, "Get People");
         List<Person>list = new LinkedList<Person>();
 
-    public static void updatePerson(Person person) {
-        //Person person = new Person();
-        log.log(Level.FINE, "Update People");
+//    public static void updatePerson(Person person) {
+//        //Person person = new Person();
+//        log.log(Level.FINE, "Update People");
 
         Connection conn = null;
         PreparedStatement stmt = null;
+        ResultSet rs = null;
 
         try {
             conn = DBHelper.getConnection();
@@ -41,13 +42,25 @@ public class PersonDAO {
             stmt = conn.prepareStatement(sql);
 
             // If you had parameters, they would be set wit something like:
-            stmt.setString(1, person.getFirst());
-            stmt.setString(2, person.getLast());
-            stmt.setString(3, person.getEmail());
-            stmt.setString(4, person.getPhone());
-            stmt.setString(5, person.getBirthday());
+//            stmt.setString(1, person.getFirst());
+//            stmt.setString(2, person.getLast());
+//            stmt.setString(3, person.getEmail());
+//            stmt.setString(4, person.getPhone());
+//            stmt.setString(5, person.getBirthday());
+            stmt.setString(1,"1");
+           // stmt.executeUpdate();
+            rs = stmt.executeQuery();
 
-            stmt.executeUpdate();
+            while(rs.next()) {
+                Person person = new Person();
+                person.setId(rs.getInt("id"));
+                person.setFirst(rs.getString("first"));
+                person.setLast(rs.getString("last"));
+                person.setEmail(rs.getString("email"));
+                person.setPhone(rs.getString("phone"));
+                person.setBirthday(rs.getString("birthday"));
+                list.add(person);
+            }
 
         } catch (SQLException se) {
             log.log(Level.SEVERE, "SQL Error", se );
@@ -55,8 +68,10 @@ public class PersonDAO {
             log.log(Level.SEVERE, "Error", e );
         } finally {
             // Ok, close our result set, statement, and connection
+            try { rs.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
             try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
             try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
         }
+        return list;
     }
 }
