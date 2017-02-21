@@ -41,11 +41,11 @@ public class PersonDAO {
             stmt = conn.prepareStatement(sql);
 
             // If you had parameters, they would be set wit something like:
-            stmt.setString(1, "firstname");
-            stmt.setString(2, "lastname");
-            stmt.setString(3, "email");
-            stmt.setString(4, "phone");
-            stmt.setString(5, "birthday");
+            stmt.setString(1, person.getFirst());
+            stmt.setString(2, person.getLast());
+            stmt.setString(3, person.getEmail());
+            stmt.setString(4, person.getPhone());
+            stmt.setString(5, person.getBirthday());
 
             stmt.executeUpdate();
 
