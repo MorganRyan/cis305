@@ -40,7 +40,6 @@ public class PersonDAO {
             stmt.setString(3, person.getEmail());
             stmt.setString(4, person.getPhone());
             stmt.setString(5, person.getBirthday());
-            stmt.setString(1,"1");
             stmt.executeUpdate();
 
         } catch (SQLException se) {
@@ -67,7 +66,7 @@ public class PersonDAO {
         try {
             conn = DBHelper.getConnection();
 
-            String sql = "select id,first ,last ,email,phone,birthday from person";
+            String sql = "select id, first, last, email, phone, birthday from person";
 
             // If you had parameters, it would look something like
             // String sql = "select id, first, last, phone from person where id = ?";
@@ -75,7 +74,7 @@ public class PersonDAO {
             // Create an object with all the info about our SQL statement to run.
             stmt = conn.prepareStatement(sql);
 
-            stmt.setString(1,"1");
+            //stmt.setString(1,"1");
             rs = stmt.executeQuery();
 
             while(rs.next()) {
