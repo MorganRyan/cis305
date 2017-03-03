@@ -16,12 +16,29 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Morgan on 2/16/2017.
  */
 @WebServlet(name = "NameListEdit")
 public class NameListEdit extends HttpServlet {
+
+    private Pattern firstNameValidationPattern;
+    private Pattern lastNameValidationPattern;
+    private Pattern emailValidationPattern;
+    private Pattern phoneValidationPattern;
+    private Pattern birthdayValidationPattern;
+
+    public NameListEdit() {
+        firstNameValidationPattern = Pattern.compile("^[A-Za-z]{1,10}$");
+        lastNameValidationPattern = Pattern.compile("^[A-Za-z]{1,10}$");
+        emailValidationPattern = Pattern.compile("S+@S+.S+");
+        phoneValidationPattern = Pattern.compile("^[0-9]{10}$");
+        birthdayValidationPattern = Pattern.compile("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$");
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/plain");
         PrintWriter out = response.getWriter();
@@ -43,13 +60,58 @@ public class NameListEdit extends HttpServlet {
         out.println("phone='"+phone+"'");
         out.println("birthday='"+birthday+"'");
 
+        boolean validation = true;
+
+        Matcher m = firstNameValidationPattern.matcher(firstName);
+        if (m.find( )) {
+            out.println("Passed validation");
+        } else {
+            out.println("Did not pass validation");
+            out.println(false);
+        }
+
+        Matcher m1 = lastNameValidationPattern.matcher(lastName);
+        if (m1.find( )) {
+            out.println("Passed validation");
+        } else {
+            out.println("Did not pass validation");
+            out.println(false);
+        }
+
+        Matcher m2 = emailValidationPattern.matcher(email);
+        if (m2.find( )) {
+            out.println("Passed validation");
+        } else {
+            out.println("Did not pass validation");
+            out.println(false);
+        }
+
+        Matcher m3 = phoneValidationPattern.matcher(phone);
+        if (m3.find( )) {
+            out.println("Passed validation");
+        } else {
+            out.println("Did not pass validation");
+            out.println(false);
+        }
+
+        Matcher m4 = birthdayValidationPattern.matcher(birthday);
+        if (m4.find( )) {
+            out.println("Passed validation");
+        } else {
+            out.println("Did not pass validation");
+            out.println(false);
+        }
+
+
         Person person = new Person();
         person.setFirst(firstName);
         person.setLast(lastName);
         person.setEmail(email);
         person.setPhone(phone);
         person.setBirthday(birthday);
-        PersonDAO.updatePerson(person);
 
+        if (validation = true) {
+            PersonDAO.updatePerson(person);
+        }
     }
 }

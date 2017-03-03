@@ -12,9 +12,12 @@ function updateTable() {
             for (var i = 0; i < json_result.length; i++)
             {
                 json_result[i].phone = json_result[i].phone.substring(0,3) + "-" + json_result[i].phone.substring(3,6) + "-" + json_result[i].phone.substring(6,10)
-                $("#datatable tbody").append("<tr><td>" + json_result[i].id + "</td><td>" + json_result[i].first + "</td><td>" + json_result[i].last + "</td><td>" + json_result[i].email + "</td><td>" + json_result[i].phone + "</td><td>" + json_result[i].birthday + "</td></tr>");
+                $("#datatable tbody").append("<tr><td>" + json_result[i].id + "</td><td>" + json_result[i].first + "</td><td>" + json_result[i].last + "</td><td>" + json_result[i].email + "</td><td>" + json_result[i].phone + "</td><td>" + json_result[i].birthday + "</td>" + "<td><button type='button' name='delete' class='deleteButton btn' value='" + json_result[i].id + "'>Delete</button></td></tr>");
             }
-            console.log("Done");
+            console.log("Update Table Done");
+            var buttons = $(".deleteButton");
+            buttons.on("click", deleteItem);
+            $(".deleteButton").on("click", deleteItem);
         }
     );
 }
@@ -193,6 +196,23 @@ function validateFunction() {
 
 var saveChangesButton = $('#saveChanges');
 saveChangesButton.on("click", validateFunction);
+
+function deleteItem(e) {
+    console.log("Delete Table Called")
+    var url = "api/name_list_delete";
+    console.log("Problem")
+    // console.log(dataToServer);
+    idValue = e.target.value;
+    var dataToServer = {idValue: id};
+
+    $.post(url, dataToServer, function (dataFromServer) {
+        console.log("Finished calling servlet.");
+        console.log(dataFromServer);
+        updateTable();
+    });
+    console.debug("Delete");
+    console.debug(e.target.value);
+}
 
 
 updateTable();

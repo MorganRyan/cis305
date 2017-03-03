@@ -18,8 +18,8 @@ public class PersonDAO {
     private final static Logger log = Logger.getLogger(edu.simpson.cis.cis320.PersonDAO.class.getName());
 
     public static void updatePerson(Person person) {
-       //Person person = new Person();
-       log.log(Level.FINE, "Update People");
+        //Person person = new Person();
+        log.log(Level.FINE, "Update People");
         Connection conn = null;
         PreparedStatement stmt = null;
 
@@ -43,20 +43,28 @@ public class PersonDAO {
             stmt.executeUpdate();
 
         } catch (SQLException se) {
-            log.log(Level.SEVERE, "SQL Error", se );
+            log.log(Level.SEVERE, "SQL Error", se);
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error", e );
+            log.log(Level.SEVERE, "Error", e);
         } finally {
             // Ok, close our result set, statement, and connection
-            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
         }
     }
 
-    public static List<Person>getPeople() {
+    public static List<Person> getPeople() {
         //Person person = new Person();
         log.log(Level.FINE, "Get People");
-        List<Person>list = new LinkedList<Person>();
+        List<Person> list = new LinkedList<Person>();
 
 
         Connection conn = null;
@@ -77,7 +85,7 @@ public class PersonDAO {
             //stmt.setString(1,"1");
             rs = stmt.executeQuery();
 
-            while(rs.next()) {
+            while (rs.next()) {
                 Person person = new Person();
                 person.setId(rs.getInt("id"));
                 person.setFirst(rs.getString("first"));
@@ -89,15 +97,60 @@ public class PersonDAO {
             }
 
         } catch (SQLException se) {
-            log.log(Level.SEVERE, "SQL Error", se );
+            log.log(Level.SEVERE, "SQL Error", se);
         } catch (Exception e) {
-            log.log(Level.SEVERE, "Error", e );
+            log.log(Level.SEVERE, "Error", e);
         } finally {
             // Ok, close our result set, statement, and connection
-            try { rs.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { stmt.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
-            try { conn.close(); } catch (Exception e) { log.log(Level.SEVERE, "Error", e ); }
+            try {
+                rs.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
         }
         return list;
+    }
+
+    public static void deletePerson(int id) {
+        log.log(Level.FINE, "Delete People");
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DBHelper.getConnection();
+
+            String sql = "DELETE from person where id = ?";
+
+            stmt = conn.prepareStatement(sql);
+
+            stmt.setInt(1,id);
+            stmt.executeUpdate();
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        } finally {
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+        }
     }
 }
