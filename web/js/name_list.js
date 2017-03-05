@@ -202,8 +202,8 @@ function deleteItem(e) {
     var url = "api/name_list_delete";
     console.log("Problem")
     // console.log(dataToServer);
-    idValue = e.target.value;
-    var dataToServer = {idValue: id};
+    var idValue = e.target.value;
+    var dataToServer = {id: idValue};
 
     $.post(url, dataToServer, function (dataFromServer) {
         console.log("Finished calling servlet.");
