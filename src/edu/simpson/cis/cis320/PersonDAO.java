@@ -153,4 +153,48 @@ public class PersonDAO {
             }
         }
     }
+
+    public static void editPerson(Person person) {
+        //Person person = new Person();
+        log.log(Level.FINE, "Edit People");
+        Connection conn = null;
+        PreparedStatement stmt = null;
+
+        try {
+            conn = DBHelper.getConnection();
+
+            String sql = "update person set first=?, last=?, email=?, phone=?, birthday=? where id=?";
+
+            // If you had parameters, it would look something like
+            // String sql = "select id, first, last, phone from person where id = ?";
+
+            // Create an object with all the info about our SQL statement to run.
+            stmt = conn.prepareStatement(sql);
+
+            // If you had parameters, they would be set wit something like:
+            stmt.setString(1, person.getFirst());
+            stmt.setString(2, person.getLast());
+            stmt.setString(3, person.getEmail());
+            stmt.setString(4, person.getPhone());
+            stmt.setString(5, person.getBirthday());
+            stmt.executeUpdate();
+
+        } catch (SQLException se) {
+            log.log(Level.SEVERE, "SQL Error", se);
+        } catch (Exception e) {
+            log.log(Level.SEVERE, "Error", e);
+        } finally {
+            // Ok, close our result set, statement, and connection
+            try {
+                stmt.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+            try {
+                conn.close();
+            } catch (Exception e) {
+                log.log(Level.SEVERE, "Error", e);
+            }
+        }
+    }
 }

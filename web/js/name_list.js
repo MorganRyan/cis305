@@ -12,12 +12,17 @@ function updateTable() {
             for (var i = 0; i < json_result.length; i++)
             {
                 json_result[i].phone = json_result[i].phone.substring(0,3) + "-" + json_result[i].phone.substring(3,6) + "-" + json_result[i].phone.substring(6,10)
-                $("#datatable tbody").append("<tr><td>" + json_result[i].id + "</td><td>" + json_result[i].first + "</td><td>" + json_result[i].last + "</td><td>" + json_result[i].email + "</td><td>" + json_result[i].phone + "</td><td>" + json_result[i].birthday + "</td>" + "<td><button type='button' name='delete' class='deleteButton btn' value='" + json_result[i].id + "'>Delete</button></td></tr>");
+                $("#datatable tbody").append("<tr><td>" + json_result[i].id + "</td><td>" + json_result[i].first + "</td><td>" + json_result[i].last + "</td><td>" + json_result[i].email + "</td><td>" + json_result[i].phone + "</td><td>" + json_result[i].birthday
+                    + "</td>" + "<td><button type='button' name='delete' class='deleteButton btn' value='" + json_result[i].id + "'>Delete</button></td>" + "<td><button type='button' name='edit' class='editButton btn' value='" + json_result[i].id + "'>Edit</button></td></tr>");
             }
             console.log("Update Table Done");
             var buttons = $(".deleteButton");
             buttons.on("click", deleteItem);
             $(".deleteButton").on("click", deleteItem);
+
+            var buttons = $(".editButton");
+            buttons.on("click", editItem);
+            $(".editButton").on("click", editItem);
         }
     );
 }
@@ -212,6 +217,49 @@ function deleteItem(e) {
     });
     console.debug("Delete");
     console.debug(e.target.value);
+}
+
+function editItem(e) {
+    console.debug("Edit");
+    console.debug(e.target.value);
+    var idValue = e.target.value;
+
+    var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
+    var lastName = e.target.parentNode.parentNode.querySelectorAll("td")[2].innerHTML;
+    var email = e.target.parentNode.parentNode.querySelectorAll("td")[3].innerHTML;
+    var phone = e.target.parentNode.parentNode.querySelectorAll("td")[4].innerHTML;
+    var birthday = e.target.parentNode.parentNode.querySelectorAll("td")[5].innerHTML;
+
+    $('#id').val(idValue);
+    $('#firstName').val(firstName);
+    $('#firstNameDiv').removeClass("has-error");
+    $('#firstNameGlyph').removeClass("glyphicon-remove");
+    $('#firstNameDiv').removeClass("has-success");
+    $('#firstNameGlyph').removeClass("glyphicon-ok");
+    $('#lastName').val(lastName);
+    $('#lastNameDiv').removeClass("has-error");
+    $('#lastNameGlyph').removeClass("glyphicon-remove");
+    $('#lastNameDiv').removeClass("has-success");
+    $('#lastNameGlyph').removeClass("glyphicon-ok");
+    $('#email').val(email);
+    $('#emailDiv').removeClass("has-error");
+    $('#emailGlyph').removeClass("glyphicon-remove");
+    $('#emailDiv').removeClass("has-success");
+    $('#emailGlyph').removeClass("glyphicon-ok");
+    $('#phone').val(phone);
+    $('#phoneDiv').removeClass("has-error");
+    $('#phoneGlyph').removeClass("glyphicon-remove");
+    $('#phoneDiv').removeClass("has-success");
+    $('#phoneGlyph').removeClass("glyphicon-ok");
+    $('#birthday').val(birthday);
+    $('#birthdayDiv').removeClass("has-error");
+    $('#birthdayGlyph').removeClass("glyphicon-remove");
+    $('#birthdayDiv').removeClass("has-success");
+    $('#birthdayGlyph').removeClass("glyphicon-ok");
+
+    $('#myModal').modal('show');
+
+    //updateTable();
 }
 
 
