@@ -61,7 +61,7 @@ function showDialogAdd() {
     $('#birthdayDiv').removeClass("has-success");
     $('#birthdayGlyph').removeClass("glyphicon-ok");
 
-    $('#myModal').modal('show');
+    $('#myModal').modal('hide');
 
 }
 
@@ -197,7 +197,7 @@ function validateFunction() {
         //
         $.post(url, dataToServer, function (dataFromServer) {
              console.log("Finished calling servlet.");
-             console.log(dataFromServer);
+             console.log(dataToServer);
              updateTable();
              $("close").click();
         });
@@ -217,7 +217,7 @@ function deleteItem(e) {
 
     $.post(url, dataToServer, function (dataFromServer) {
         console.log("Finished calling servlet.");
-        console.log(dataFromServer);
+        console.log(dataToServer);
         updateTable();
     });
     console.log("Delete");
@@ -227,7 +227,7 @@ function deleteItem(e) {
 function editItem(e) {
     console.log("Edit");
     console.log("Error");
-    console.log(e.target.value);
+    console.debug(e.target.value);
     var idValue = e.target.value;
 
     var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
@@ -264,6 +264,13 @@ function editItem(e) {
     $('#birthdayGlyph').removeClass("glyphicon-ok");
 
     $('#myModal').modal('show');
+
+    $.post(url, dataToServer, function (dataFromServer) {
+        console.log("Finished calling servlet.");
+        console.log(dataToServer);
+        updateTable();
+        $("close").click();
+    });
 
     //updateTable();
 }
