@@ -47,6 +47,7 @@ public class NameListEdit extends HttpServlet {
         out.println("Post");
 
         // Grab the data we got via a parameter
+        Integer id = Integer.parseInt(request.getParameter("id"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
@@ -54,6 +55,7 @@ public class NameListEdit extends HttpServlet {
         String birthday = request.getParameter("birthday");
 
         // Just print the data out to confirm we got it.
+        out.println("id='"+id+"'");
         out.println("firstName='"+firstName+"'");
         out.println("lastName='"+lastName+"'");
         out.println("email='"+email+"'");
@@ -104,14 +106,19 @@ public class NameListEdit extends HttpServlet {
 
 
         Person person = new Person();
+        person.setId(id);
         person.setFirst(firstName);
         person.setLast(lastName);
         person.setEmail(email);
         person.setPhone(phone);
         person.setBirthday(birthday);
 
-        if (validation = true) {
+        if (validation == true && person.getId() == null) {
+            out.println("doesn't have id");
             PersonDAO.updatePerson(person);
+        } else {
+            out.println("has an id");
+            PersonDAO.editPerson(person);
         }
     }
 }

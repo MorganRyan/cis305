@@ -183,18 +183,23 @@ function validateFunction() {
 
     if (valid_form) {
         var url = "api/name_list_edit";
-        var myFieldValue = $("#firstName").val();
-        var myFieldValue = $("#lastName").val();
-        var myFieldValue = $("#email").val();
-        var myFieldValue = $("#phone").val();
-        var myFieldValue = $("#birthday").val();
-        var dataToServer = {firstName: firstname, lastName: lastname, email: email, phone: phone, birthday: birthday};
+        var id = $("#id").val();
+        var firstname = $("#firstName").val();
+        var lastname = $("#lastName").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var birthday = $("#birthday").val();
+        console.log("Error");
+        var dataToServer = {id: id, firstName: firstname, lastName: lastname, email: email, phone: phone, birthday: birthday};
         console.log(dataToServer);
-
-        $.post(url, dataToServer, function (dataToServer) {
-            console.log("Finished calling servlet.");
-            console.log(dataToServer);
-            updateTable();
+        // // var idValue = e.target.value;
+        // // //var dataToServer = {id: idValue};
+        //
+        $.post(url, dataToServer, function (dataFromServer) {
+             console.log("Finished calling servlet.");
+             console.log(dataFromServer);
+             updateTable();
+             $("close").click();
         });
     }
 }
@@ -215,13 +220,14 @@ function deleteItem(e) {
         console.log(dataFromServer);
         updateTable();
     });
-    console.debug("Delete");
+    console.log("Delete");
     console.debug(e.target.value);
 }
 
 function editItem(e) {
-    console.debug("Edit");
-    console.debug(e.target.value);
+    console.log("Edit");
+    console.log("Error");
+    console.log(e.target.value);
     var idValue = e.target.value;
 
     var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
