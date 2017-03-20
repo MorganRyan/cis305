@@ -61,7 +61,7 @@ function showDialogAdd() {
     $('#birthdayDiv').removeClass("has-success");
     $('#birthdayGlyph').removeClass("glyphicon-ok");
 
-    $('#myModal').modal('hide');
+    $('#myModal').modal('show');
 
 }
 
@@ -229,6 +229,8 @@ function editItem(e) {
     console.log("Error");
     console.debug(e.target.value);
     var idValue = e.target.value;
+    var dataToServer = {id: idValue};
+    var url = "api/name_list_edit";
 
     var firstName = e.target.parentNode.parentNode.querySelectorAll("td")[1].innerHTML;
     var lastName = e.target.parentNode.parentNode.querySelectorAll("td")[2].innerHTML;
