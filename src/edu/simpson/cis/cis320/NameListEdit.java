@@ -19,6 +19,8 @@ import java.sql.PreparedStatement;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static jdk.nashorn.internal.objects.NativeString.length;
+
 /**
  * Created by Morgan on 2/16/2017.
  */
@@ -45,6 +47,12 @@ public class NameListEdit extends HttpServlet {
 
         // Print that this is a post
         out.println("Post");
+
+//        if (request.getParameter("id") != null && length("id") > 0) {
+//            Integer id = Integer.parseInt(request.getParameter("id"));
+//            Person.set(id);
+//        } else {
+//        }
 
         // Grab the data we got via a parameter
         Integer id = Integer.parseInt(request.getParameter("id"));
