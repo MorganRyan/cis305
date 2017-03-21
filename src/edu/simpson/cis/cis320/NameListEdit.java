@@ -51,11 +51,9 @@ public class NameListEdit extends HttpServlet {
         Integer id = 0;
        if (request.getParameter("id") != null && request.getParameter("id").length() > 0) {
             id = Integer.parseInt(request.getParameter("id"));
-        } else {
         }
 
         // Grab the data we got via a parameter
-//        id = Integer.parseInt(request.getParameter("id"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String email = request.getParameter("email");
