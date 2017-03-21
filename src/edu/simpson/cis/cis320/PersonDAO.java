@@ -177,6 +177,7 @@ public class PersonDAO {
             stmt.setString(3, person.getEmail());
             stmt.setString(4, person.getPhone());
             stmt.setString(5, person.getBirthday());
+            stmt.setInt(6, person.getId());
             stmt.executeUpdate();
 
         } catch (SQLException se) {
