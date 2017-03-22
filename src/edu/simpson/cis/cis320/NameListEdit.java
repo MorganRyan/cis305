@@ -122,6 +122,10 @@ public class NameListEdit extends HttpServlet {
         if (validation == true) {
             out.println("doesn't have id");
             PersonDAO.updatePerson(person);
+        }
+        if (id == null) {
+            out.println("doesn't have id");
+            PersonDAO.updatePerson(person);
         } else {
             out.println("has an id");
             PersonDAO.editPerson(person);
