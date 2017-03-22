@@ -119,14 +119,11 @@ public class NameListEdit extends HttpServlet {
         person.setPhone(phone);
         person.setBirthday(birthday);
 
-        if (validation == true) {
+        if (validation == true && id == 0) {
             out.println("doesn't have id");
             PersonDAO.updatePerson(person);
         }
-        if (id == null) {
-            out.println("doesn't have id");
-            PersonDAO.updatePerson(person);
-        } else {
+        if (validation == true && id != null) {
             out.println("has an id");
             PersonDAO.editPerson(person);
         }

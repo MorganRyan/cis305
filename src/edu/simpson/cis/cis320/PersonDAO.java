@@ -26,8 +26,7 @@ public class PersonDAO {
         try {
             conn = DBHelper.getConnection();
 
-            String sql = "Insert INTO cis320.person (first, last, email, phone, birthday) VALUES (?, ?, ?, ?, ?)";
-
+            String sql = "Insert INTO cis320.person (id, first, last, email, phone, birthday) VALUES (?, ?, ?, ?, ?, ?)";
             // If you had parameters, it would look something like
             // String sql = "select id, first, last, phone from person where id = ?";
 
@@ -35,11 +34,12 @@ public class PersonDAO {
             stmt = conn.prepareStatement(sql);
 
             // If you had parameters, they would be set wit something like:
-            stmt.setString(1, person.getFirst());
-            stmt.setString(2, person.getLast());
-            stmt.setString(3, person.getEmail());
-            stmt.setString(4, person.getPhone());
-            stmt.setString(5, person.getBirthday());
+            stmt.setInt(1, person.getId());
+            stmt.setString(2, person.getFirst());
+            stmt.setString(3, person.getLast());
+            stmt.setString(4, person.getEmail());
+            stmt.setString(5, person.getPhone());
+            stmt.setString(6, person.getBirthday());
             stmt.executeUpdate();
 
         } catch (SQLException se) {
