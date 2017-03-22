@@ -11,11 +11,12 @@ function updateTable() {
     $.getJSON(url, null, function(json_result) {
             for (var i = 0; i < json_result.length; i++)
             {
-                json_result[i].phone = json_result[i].phone.substring(0,3) + "-" + json_result[i].phone.substring(3,6) + "-" + json_result[i].phone.substring(6,10)
+                json_result[i].phone = json_result[i].phone.substring(0,3) + "-" + json_result[i].phone.substring(3,6) + "-" + json_result[i].phone.substring(6,10);
                 $("#datatable tbody").append("<tr><td>" + json_result[i].id + "</td><td>" + json_result[i].first + "</td><td>" + json_result[i].last + "</td><td>" + json_result[i].email + "</td><td>" + json_result[i].phone + "</td><td>" + json_result[i].birthday
                     + "</td>" + "<td><button type='button' name='delete' class='deleteButton btn' value='" + json_result[i].id + "'>Delete</button></td>" + "<td><button type='button' name='edit' class='editButton btn' value='" + json_result[i].id + "'>Edit</button></td></tr>");
             }
             console.log("Update Table Done");
+
             var buttons = $(".deleteButton");
             buttons.on("click", deleteItem);
             $(".deleteButton").on("click", deleteItem);
@@ -114,7 +115,7 @@ function validateFunction() {
 
     var email = $('#email').val();
     var v1 = $('#validateMe').val();
-    var reg = /\S+@\S+\.\S+/;
+    var reg = /^\S+@\S+\.\S+$/;
 
     if (reg.test(email)) {
         $('#result').text("Ok");
@@ -199,7 +200,6 @@ function validateFunction() {
              console.log("Finished calling servlet.");
              console.log(dataToServer);
              updateTable();
-             $("close").click();
         });
     }
 }

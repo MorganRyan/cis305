@@ -36,7 +36,7 @@ public class NameListEdit extends HttpServlet {
     public NameListEdit() {
         firstNameValidationPattern = Pattern.compile("^[A-Za-z]{1,10}$");
         lastNameValidationPattern = Pattern.compile("^[A-Za-z]{1,10}$");
-        emailValidationPattern = Pattern.compile("S+@S+.S+");
+        emailValidationPattern = Pattern.compile("^\\S+@\\S+\\.\\S+$");
         phoneValidationPattern = Pattern.compile("^[0-9]{10}$");
         birthdayValidationPattern = Pattern.compile("^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$");
     }
@@ -119,7 +119,7 @@ public class NameListEdit extends HttpServlet {
         person.setPhone(phone);
         person.setBirthday(birthday);
 
-        if (validation == true && person.getId() == null) {
+        if (validation == true) {
             out.println("doesn't have id");
             PersonDAO.updatePerson(person);
         } else {
