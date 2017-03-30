@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,21 +32,42 @@
                 <li class="active"><a href="index.html">Home</a></li>
                 <li><a href="javascript_assignment.html">Javascript Assignment</a></li>
                 <li><a href="test_javascript.html">Test Javascript</a></li>
-                <li><a href="api/name_list_get">Name List JSON</a></li>
                 <li><a href="name_list.html">Name List</a></li>
-                <li><a href="login.html">Login</a></li>
+                <!--<li><a href="form_demo.html">Form Demo</a></li>-->
+                <!--<li><a href="cookie_demo.html">Cookie Demo</a></li>-->
+                <li><a href="login.html">Login Demo</a></li>
+
             </ul>
         </div>
     </div>
 </nav>
 
 <div class="container">
-    <h1>Morgan Ryan's Index Page for CIS 320 Work</h1>
+    <h1>Login Demo</h1>
+    <h2>Login</h2>
 
-    <p>Hi</p>
+    <div>
+        <input type="text" id="loginId" placeholder="User Id">
+    </div>
+    <button id="setSessionJava">Login</button><br />
+
+    <div id ="invalidate">
+    <h2>Log Out</h2>
+    <button id="invalidateSession">Log Out</button>
+    </div>
+
+    <h2>Welcome!</h2>
+    <button id="getSessionJava">Get Login Info</button><br />
+
+    <pre id="getSessionResult">
+    </pre>
+
+    <br />
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="js/login.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

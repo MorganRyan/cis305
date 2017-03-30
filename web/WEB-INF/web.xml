@@ -27,4 +27,28 @@
         <servlet-name>NameListDelete</servlet-name>
         <url-pattern>/api/name_list_delete</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>get_login_servlet</servlet-name>
+        <servlet-class>edu.simpson.cis.cis320.get_login_servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>get_login_servlet</servlet-name>
+        <url-pattern>/api/get_login_servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>login_servlet</servlet-name>
+        <servlet-class>edu.simpson.cis.cis320.login_servlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login_servlet</servlet-name>
+        <url-pattern>/api/login_servlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>InvalidateSessionServlet</servlet-name>
+        <servlet-class>edu.simpson.cis.cis320.InvalidateSessionServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>InvalidateSessionServlet</servlet-name>
+        <url-pattern>/api/invalidate_session_servlet</url-pattern>
+    </servlet-mapping>
 </web-app>
